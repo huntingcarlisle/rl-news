@@ -152,12 +152,59 @@
         <h1 class="site-title">RL News Catch-Up</h1>
         <p class="tagline">Reinforcement learning, agentic systems, and the open training-and-serving stack—ranked for signal and updated as the field moves.</p>
       </div>
-      <time class="updated" datetime="2026-10-16T09:56:12-07:00">Last updated Oct 16, 2026 · 9:56 AM PDT</time>
+      <time class="updated" datetime="2026-10-17T06:16:47-07:00">Last updated Oct 17, 2026 · 6:16 AM PDT</time>
     </header>
 
     <section class="latest" aria-labelledby="latest-heading">
       <div class="section-kicker"><h2 id="latest-heading">Latest</h2><p>3 most recent stories</p></div>
-      <div class="feature-grid"><article class="feature-card item" data-topics="stack industry">
+      <div class="feature-grid"><article class="feature-card item" data-topics="stack research">
+          <div class="meta-row"><time>OCT 14</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-research">Algorithms + papers</span></div></div>
+          <div class="article-copy"><h3>vLLM achieves bitwise-consistent RL training and inference</h3>
+          <p>vLLM’s new post shows training and rollout producing bitwise-identical logprobs (diff = 0) on DeepSeek-V4-Flash, reaching 0 diff at 91.3% of the high-performance baseline’s rollout throughput.</p>
+          <p>The team carried the method to Nemotron-3.5-Lightning, where the consistent run’s SWE-bench Pro score held ~0.6 while the baseline fell from 0.56 to 0.22. The workflow is open-sourced as an agent skill plus recipes and code.</p>
+          <p class="why"><strong>Why:</strong> Train–inference numeric mismatch turns on-policy RL into off-policy RL and can destabilize training—this is a practical, transferable fix squarely in the RL/inference-stack core.</p>
+          <div class="sources"><a class="source" href="https://vllm.ai/blog/2026-10-14-train-inference-consistency" target="_blank" rel="noreferrer">vLLM Blog · Oct 14</a></div>
+          <p class="caveat">Vendor blog; baselines ran a single recipe without thorough tuning or algorithmic corrections, and the end-to-end wall-clock gain from fewer crashes and reruns is not yet shown.</p></div>
+        </article>
+<article class="feature-card item" data-topics="industry research">
+          <div class="meta-row"><time>OCT 16</time><div class="topic-list"><span class="topic topic-industry">Models + industry</span><span class="topic topic-research">Algorithms + papers</span></div></div>
+          <div class="article-copy"><h3>Reflection ships Beam’s open weights under Apache 2.0</h3>
+          <p>Reflection released the weights for Beam, its 501B-total / 23B-active MoE model trained with 100M+ RL rollouts, on Hugging Face in BF16, FP8, and NVFP4—alongside a model card, safety report, speculative-decoding drafter, and the open-source Mirror CLI training harness.</p>
+          <p>The release follows up the Oct 5 Beam announcement below, when the weights were still “coming later.”</p>
+          <p class="why"><strong>Why:</strong> A permissively licensed 501B RL-trained open model with its training harness is the most reusable artifact in this week’s open-weight wave.</p>
+          <div class="sources"><a class="source" href="https://www.unite.ai/reflection-releases-beams-open-weights-under-apache-2-0-license/" target="_blank" rel="noreferrer">Unite.AI · Oct 16</a></div>
+          <p class="caveat">Benchmark figures are vendor-reported (80.1% Terminal-Bench v2.1 claimed; Artificial Analysis Intelligence Index 30 per third-party coverage) and await independent verification.</p></div>
+        </article>
+<article class="feature-card item" data-topics="industry">
+          <div class="meta-row"><time>OCT 17</time><div class="topic-list"><span class="topic topic-industry">Models + industry</span></div></div>
+          <div class="article-copy"><h3>ChinaTalk: the case for DUV controls</h3>
+          <p>Saif Khan of the Center for Technology and Statecraft argues on ChinaTalk that stopping exports of DUV immersion lithography tools is the US’s most consequential lever over the AI balance. CTS modeling projects that halting tool exports today caps China’s indigenous AI-chip production at ~10M H100-equivalents per year by the mid-2030s, versus ~1B per year for the US—while continued exports could let the ranges overlap.</p>
+          <p class="why"><strong>Why:</strong> DUV tools are the most advanced lithography China can still buy, so this frames the chip-supply backdrop behind every RL and inference buildout.</p>
+          <div class="sources"><a class="source" href="https://www.chinatalk.media/p/saif-khan-the-case-for-duv-controls" target="_blank" rel="noreferrer">ChinaTalk · Oct 17</a></div>
+          <p class="caveat">A modeling projection with wide error bars and a policy argument, not enacted policy.</p></div>
+        </article></div>
+    </section>
+
+    <section class="latest-brief" aria-labelledby="brief-heading">
+      <h2 id="brief-heading">Latest in brief</h2>
+      <p>vLLM closes the train–inference gap, showing bitwise-identical training and rollout logprobs at 91.3% of baseline throughput—and a consistent run that holds its SWE-bench Pro score where the baseline’s collapses. Reflection ships Beam’s 501B open weights, plus its Mirror training harness, under Apache 2.0, while ChinaTalk makes the case that DUV lithography exports are Washington’s most consequential lever over the AI-chip balance.</p>
+    </section>
+
+    <nav class="filters-wrap" aria-label="Filter stories by topic">
+      <div class="filters">
+        <button class="filter active" type="button" data-filter="all">All 51</button>
+        <button class="filter" type="button" data-filter="stack">NVIDIA + SGLang</button>
+        <button class="filter" type="button" data-filter="safety">Agentic safety</button>
+        <button class="filter" type="button" data-filter="research">Algorithms + papers</button>
+        <button class="filter" type="button" data-filter="industry">Models + industry</button>
+      </div>
+    </nav>
+
+    <section aria-labelledby="stream-heading">
+      <div class="stream-head"><h2 id="stream-heading">News stream</h2><p>Newest first · all 51 stories remain in the archive</p></div>
+      <div class="news-stream"><section class="stream-group" aria-labelledby="group-0">
+      <h3 class="date-divider" id="group-0">Oct 15</h3>
+      <div class="date-stories"><article class="news-card item" data-topics="stack industry">
           <div class="meta-row"><time>OCT 15</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-industry">Models + industry</span></div></div>
           <div class="article-copy"><h3>Meta releases Muse Spark Open for agentic coding</h3>
           <p>Meta released open weights for Muse Spark Open, an 816B-total / 42B-active MoE model for agentic coding with a 1M-token context window.</p>
@@ -165,8 +212,7 @@
           <p class="why"><strong>Why:</strong> A frontier-scale open coding model is pairing unusually long context with serving-specific kernel work—and extending local execution to a two-machine Apple setup.</p>
           <div class="sources"><a class="source" href="https://www.gadgets360.com/ai/news/meta-muse-spark-open-ai-model-launch-apple-mac-studio-partnership-12194575" target="_blank" rel="noreferrer">Gadgets 360 · Oct 15</a></div>
           <p class="caveat">Kernel speedups are Meta’s claims as reported by the cited source and are not independently verified.</p></div>
-        </article>
-<article class="feature-card item" data-topics="stack research industry">
+        </article><article class="news-card item" data-topics="stack research industry">
           <div class="meta-row"><time>OCT 15</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-research">Algorithms + papers</span><span class="topic topic-industry">Models + industry</span></div></div>
           <div class="article-copy"><h3>NVIDIA releases Nemotron 3.5 Super VL</h3>
           <p>NVIDIA released Nemotron 3.5 Super VL, a 120B open-weight multimodal MoE built for enterprise agentic tasks.</p>
@@ -174,8 +220,7 @@
           <p class="why"><strong>Why:</strong> NVIDIA is shipping an open multimodal agent model alongside the training, RL, and inference paths needed to customize and deploy it.</p>
           <div class="sources"><a class="source" href="https://www.marktechpost.com/2026/10/15/nvidia-nemotron-3-5-super-vl-release/" target="_blank" rel="noreferrer">MarkTechPost · Oct 15</a></div>
           <p class="caveat">Architecture and ecosystem-support details are release claims reported by the cited secondary source.</p></div>
-        </article>
-<article class="feature-card item" data-topics="research industry">
+        </article><article class="news-card item" data-topics="research industry">
           <div class="meta-row"><time>OCT 15</time><div class="topic-list"><span class="topic topic-research">Algorithms + papers</span><span class="topic topic-industry">Models + industry</span></div></div>
           <div class="article-copy"><h3>Microsoft completes MAI-Base-2 pre-training</h3>
           <p>Microsoft AI finished pre-training MAI-Base-2, a 2.8T-total / 80B-active MoE foundation model. On its own held-out evaluations, Microsoft claims 4–12× greater pre-training FLOPs efficiency than DeepSeek-V4-Pro-Base.</p>
@@ -185,25 +230,7 @@
           <p class="caveat">The 4–12× efficiency result is Microsoft’s own, based on its held-out evaluations, and has not been independently verified.</p></div>
         </article></div>
     </section>
-
-    <section class="latest-brief" aria-labelledby="brief-heading">
-      <h2 id="brief-heading">Latest in brief</h2>
-      <p>Meta’s newest open coding model pairs a million-token context window with SGLang-specific kernel work, while NVIDIA’s Nemotron 3.5 Super VL arrives with open multimodal agent training and serving paths. Microsoft has also finished pre-training a 2.8T-parameter MoE, but its post-training is still underway and no release date has been announced.</p>
-    </section>
-
-    <nav class="filters-wrap" aria-label="Filter stories by topic">
-      <div class="filters">
-        <button class="filter active" type="button" data-filter="all">All 48</button>
-        <button class="filter" type="button" data-filter="stack">NVIDIA + SGLang</button>
-        <button class="filter" type="button" data-filter="safety">Agentic safety</button>
-        <button class="filter" type="button" data-filter="research">Algorithms + papers</button>
-        <button class="filter" type="button" data-filter="industry">Models + industry</button>
-      </div>
-    </nav>
-
-    <section aria-labelledby="stream-heading">
-      <div class="stream-head"><h2 id="stream-heading">News stream</h2><p>Newest first · all 48 stories remain in the archive</p></div>
-      <div class="news-stream"><section class="stream-group" aria-labelledby="group-1">
+<section class="stream-group" aria-labelledby="group-1">
       <h3 class="date-divider" id="group-1">Oct 14</h3>
       <div class="date-stories"><article class="news-card item" data-topics="research industry">
           <div class="meta-row"><time>OCT 14</time><div class="topic-list"><span class="topic topic-research">Algorithms + papers</span><span class="topic topic-industry">Models + industry</span></div></div>
@@ -577,8 +604,8 @@
     </section>
 
     <footer class="method">
-      <p><strong>Source note.</strong> This digest was compiled from indexed web pages, fetched text, and the stated inbox corroboration covering Sep 10–Oct 16, 2026; none of the web items was checked in a live signed-in browser. Dates are publication or announcement dates stated by the source or paper record. Every open verification question from the research set is marked where it appears.</p>
-      <span class="count" id="visible-count">48 shown</span>
+      <p><strong>Source note.</strong> This digest was compiled from indexed web pages, fetched text, and the stated inbox corroboration covering Sep 10–Oct 17, 2026; none of the web items was checked in a live signed-in browser. Dates are publication or announcement dates stated by the source or paper record. Every open verification question from the research set is marked where it appears.</p>
+      <span class="count" id="visible-count">51 shown</span>
     </footer>
   </main>
 
