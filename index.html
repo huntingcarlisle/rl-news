@@ -152,28 +152,28 @@
         <h1 class="site-title">RL News Catch-Up</h1>
         <p class="tagline">Reinforcement learning, agentic systems, and the open training-and-serving stack—ranked for signal and updated as the field moves.</p>
       </div>
-      <time class="updated" datetime="2026-10-17T06:16:47-07:00">Last updated Oct 17, 2026 · 6:16 AM PDT</time>
+      <time class="updated" datetime="2026-10-18T06:16:38-07:00">Last updated Oct 18, 2026 · 6:16 AM PDT</time>
     </header>
 
     <section class="latest" aria-labelledby="latest-heading">
       <div class="section-kicker"><h2 id="latest-heading">Latest</h2><p>3 most recent stories</p></div>
-      <div class="feature-grid"><article class="feature-card item" data-topics="stack research">
-          <div class="meta-row"><time>OCT 14</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-research">Algorithms + papers</span></div></div>
-          <div class="article-copy"><h3>vLLM achieves bitwise-consistent RL training and inference</h3>
-          <p>vLLM’s new post shows training and rollout producing bitwise-identical logprobs (diff = 0) on DeepSeek-V4-Flash, reaching 0 diff at 91.3% of the high-performance baseline’s rollout throughput.</p>
-          <p>The team carried the method to Nemotron-3.5-Lightning, where the consistent run’s SWE-bench Pro score held ~0.6 while the baseline fell from 0.56 to 0.22. The workflow is open-sourced as an agent skill plus recipes and code.</p>
-          <p class="why"><strong>Why:</strong> Train–inference numeric mismatch turns on-policy RL into off-policy RL and can destabilize training—this is a practical, transferable fix squarely in the RL/inference-stack core.</p>
-          <div class="sources"><a class="source" href="https://vllm.ai/blog/2026-10-14-train-inference-consistency" target="_blank" rel="noreferrer">vLLM Blog · Oct 14</a></div>
-          <p class="caveat">Vendor blog; baselines ran a single recipe without thorough tuning or algorithmic corrections, and the end-to-end wall-clock gain from fewer crashes and reruns is not yet shown.</p></div>
+      <div class="feature-grid"><article class="feature-card item" data-topics="research industry">
+          <div class="meta-row"><time>OCT 18</time><div class="topic-list"><span class="topic topic-research">Algorithms + papers</span><span class="topic topic-industry">Models + industry</span></div></div>
+          <div class="article-copy"><h3>DeepSeek releases DeepSeek-V4.1-Flash-1017 with MIT-licensed open weights</h3>
+          <p>DeepSeek calls it a “minor update” to DeepSeek-V4.1-Flash (Sep 10), but the gains are substantial across reasoning, coding, agent, and vision benchmarks: Terminal-Bench 4.0 jumps 31.2 → 42.3, DeepSWE v1.1 rises 74.2 → 77.0, and Automation-Bench climbs 54.8 → 60.5, with shorter outputs and faster task completion.</p>
+          <p>DeepSeek describes training the model on feedback from its own attempts at building complete projects. The weights are MIT-licensed, and the update now serves all Flash API requests.</p>
+          <p class="why"><strong>Why:</strong> The Flash line is the open-weight workhorse for cheap inference and agentic RL rollouts—double-digit agent-benchmark gains in a point release, shipped straight into the default API path, reset the baseline everyone trains and serves against.</p>
+          <div class="sources"><a class="source" href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017" target="_blank" rel="noreferrer">DeepSeek · Hugging Face model card</a></div>
+          <p class="caveat">All benchmark figures are vendor-reported on the model card, with no independent verification yet.</p></div>
         </article>
-<article class="feature-card item" data-topics="industry research">
-          <div class="meta-row"><time>OCT 16</time><div class="topic-list"><span class="topic topic-industry">Models + industry</span><span class="topic topic-research">Algorithms + papers</span></div></div>
-          <div class="article-copy"><h3>Reflection ships Beam’s open weights under Apache 2.0</h3>
-          <p>Reflection released the weights for Beam, its 501B-total / 23B-active MoE model trained with 100M+ RL rollouts, on Hugging Face in BF16, FP8, and NVFP4—alongside a model card, safety report, speculative-decoding drafter, and the open-source Mirror CLI training harness.</p>
-          <p>The release follows up the Oct 5 Beam announcement below, when the weights were still “coming later.”</p>
-          <p class="why"><strong>Why:</strong> A permissively licensed 501B RL-trained open model with its training harness is the most reusable artifact in this week’s open-weight wave.</p>
-          <div class="sources"><a class="source" href="https://www.unite.ai/reflection-releases-beams-open-weights-under-apache-2-0-license/" target="_blank" rel="noreferrer">Unite.AI · Oct 16</a></div>
-          <p class="caveat">Benchmark figures are vendor-reported (80.1% Terminal-Bench v2.1 claimed; Artificial Analysis Intelligence Index 30 per third-party coverage) and await independent verification.</p></div>
+<article class="feature-card item" data-topics="stack">
+          <div class="meta-row"><time>OCT 18</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span></div></div>
+          <div class="article-copy"><h3>vLLM hyper-optimizes Kimi K3 decode on GB300 with agent-assisted CuTe DSL kernels</h3>
+          <p>A new opt-in decode path (<code>decode_backend: latency_specialized</code>) fuses nearly all Kimi K3 decode ops into custom CuTe DSL kernels: 842 tokens/s at batch 1 on 16 GB300 GPUs with DSpark (1.73x vs stock vLLM), 1.5–2x decode throughput across tested configs, and 1.8x higher P90 interactivity on the AgentX agentic-serving benchmark.</p>
+          <p>The post also proposes a “fast-track” RFC for shipping agent-written kernel optimizations with isolation, scoped validation, and reproducible benchmarks.</p>
+          <p class="why"><strong>Why:</strong> Agent-written kernels are moving from experiment to a governed shipping path in the main open serving stack—and AgentX is the yardstick they are being measured against, caveats and all.</p>
+          <div class="sources"><a class="source" href="https://vllm.ai/blog/2026-10-16-kimi-k3-megakernel" target="_blank" rel="noreferrer">vLLM Blog · Oct 16</a></div>
+          <p class="caveat">The AgentX comparison pits a 16-GPU optimized run against an earlier 8-GPU baseline, and the DSpark figure uses a synthetic acceptance length of 6.</p></div>
         </article>
 <article class="feature-card item" data-topics="industry">
           <div class="meta-row"><time>OCT 17</time><div class="topic-list"><span class="topic topic-industry">Models + industry</span></div></div>
@@ -187,12 +187,12 @@
 
     <section class="latest-brief" aria-labelledby="brief-heading">
       <h2 id="brief-heading">Latest in brief</h2>
-      <p>vLLM closes the train–inference gap, showing bitwise-identical training and rollout logprobs at 91.3% of baseline throughput—and a consistent run that holds its SWE-bench Pro score where the baseline’s collapses. Reflection ships Beam’s 501B open weights, plus its Mirror training harness, under Apache 2.0, while ChinaTalk makes the case that DUV lithography exports are Washington’s most consequential lever over the AI-chip balance.</p>
+      <p>DeepSeek ships DeepSeek-V4.1-Flash-1017, an MIT-licensed “minor update” with anything-but-minor agent gains—Terminal-Bench 4.0 up from 31.2 to 42.3, DeepSWE v1.1 at 77.0—now serving every Flash API request. vLLM hyper-optimizes Kimi K3 decode on GB300 with agent-assisted CuTe DSL kernels, reaching 842 tokens/s at batch 1 and 1.8x higher P90 interactivity on AgentX, and proposes a fast-track path for shipping agent-written kernels. ChinaTalk, meanwhile, makes the case that DUV lithography exports are Washington’s most consequential lever over the AI-chip balance.</p>
     </section>
 
     <nav class="filters-wrap" aria-label="Filter stories by topic">
       <div class="filters">
-        <button class="filter active" type="button" data-filter="all">All 51</button>
+        <button class="filter active" type="button" data-filter="all">All 53</button>
         <button class="filter" type="button" data-filter="stack">NVIDIA + SGLang</button>
         <button class="filter" type="button" data-filter="safety">Agentic safety</button>
         <button class="filter" type="button" data-filter="research">Algorithms + papers</button>
@@ -201,8 +201,40 @@
     </nav>
 
     <section aria-labelledby="stream-heading">
-      <div class="stream-head"><h2 id="stream-heading">News stream</h2><p>Newest first · all 51 stories remain in the archive</p></div>
-      <div class="news-stream"><section class="stream-group" aria-labelledby="group-0">
+      <div class="stream-head"><h2 id="stream-heading">News stream</h2><p>Newest first · all 53 stories remain in the archive</p></div>
+      <div class="news-stream"><section class="stream-group" aria-labelledby="group-oct18">
+      <h3 class="date-divider" id="group-oct18">Oct 18</h3>
+      <div class="date-stories"><article class="news-card item" data-topics="research industry">
+          <div class="meta-row"><time>OCT 18</time><div class="topic-list"><span class="topic topic-research">Algorithms + papers</span><span class="topic topic-industry">Models + industry</span></div></div>
+          <div class="article-copy"><h3>DeepSeek releases DeepSeek-V4.1-Flash-1017 with MIT-licensed open weights</h3>
+          <p>DeepSeek calls it a “minor update” to DeepSeek-V4.1-Flash (Sep 10), but the gains are substantial across reasoning, coding, agent, and vision benchmarks: Terminal-Bench 4.0 jumps 31.2 → 42.3, DeepSWE v1.1 rises 74.2 → 77.0, and Automation-Bench climbs 54.8 → 60.5, with shorter outputs and faster task completion.</p>
+          <p>DeepSeek describes training the model on feedback from its own attempts at building complete projects. The weights are MIT-licensed, and the update now serves all Flash API requests.</p>
+          <p class="why"><strong>Why:</strong> The Flash line is the open-weight workhorse for cheap inference and agentic RL rollouts—double-digit agent-benchmark gains in a point release, shipped straight into the default API path, reset the baseline everyone trains and serves against.</p>
+          <div class="sources"><a class="source" href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017" target="_blank" rel="noreferrer">DeepSeek · Hugging Face model card</a></div>
+          <p class="caveat">All benchmark figures are vendor-reported on the model card, with no independent verification yet.</p></div>
+        </article><article class="news-card item" data-topics="stack">
+          <div class="meta-row"><time>OCT 18</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span></div></div>
+          <div class="article-copy"><h3>vLLM hyper-optimizes Kimi K3 decode on GB300 with agent-assisted CuTe DSL kernels</h3>
+          <p>A new opt-in decode path (<code>decode_backend: latency_specialized</code>) fuses nearly all Kimi K3 decode ops into custom CuTe DSL kernels: 842 tokens/s at batch 1 on 16 GB300 GPUs with DSpark (1.73x vs stock vLLM), 1.5–2x decode throughput across tested configs, and 1.8x higher P90 interactivity on the AgentX agentic-serving benchmark.</p>
+          <p>The post also proposes a “fast-track” RFC for shipping agent-written kernel optimizations with isolation, scoped validation, and reproducible benchmarks.</p>
+          <p class="why"><strong>Why:</strong> Agent-written kernels are moving from experiment to a governed shipping path in the main open serving stack—and AgentX is the yardstick they are being measured against, caveats and all.</p>
+          <div class="sources"><a class="source" href="https://vllm.ai/blog/2026-10-16-kimi-k3-megakernel" target="_blank" rel="noreferrer">vLLM Blog · Oct 16</a></div>
+          <p class="caveat">The AgentX comparison pits a 16-GPU optimized run against an earlier 8-GPU baseline, and the DSpark figure uses a synthetic acceptance length of 6.</p></div>
+        </article></div>
+    </section>
+<section class="stream-group" aria-labelledby="group-oct16">
+      <h3 class="date-divider" id="group-oct16">Oct 16</h3>
+      <div class="date-stories"><article class="news-card item" data-topics="industry research">
+          <div class="meta-row"><time>OCT 16</time><div class="topic-list"><span class="topic topic-industry">Models + industry</span><span class="topic topic-research">Algorithms + papers</span></div></div>
+          <div class="article-copy"><h3>Reflection ships Beam’s open weights under Apache 2.0</h3>
+          <p>Reflection released the weights for Beam, its 501B-total / 23B-active MoE model trained with 100M+ RL rollouts, on Hugging Face in BF16, FP8, and NVFP4—alongside a model card, safety report, speculative-decoding drafter, and the open-source Mirror CLI training harness.</p>
+          <p>The release follows up the Oct 5 Beam announcement below, when the weights were still “coming later.”</p>
+          <p class="why"><strong>Why:</strong> A permissively licensed 501B RL-trained open model with its training harness is the most reusable artifact in this week’s open-weight wave.</p>
+          <div class="sources"><a class="source" href="https://www.unite.ai/reflection-releases-beams-open-weights-under-apache-2-0-license/" target="_blank" rel="noreferrer">Unite.AI · Oct 16</a></div>
+          <p class="caveat">Benchmark figures are vendor-reported (80.1% Terminal-Bench v2.1 claimed; Artificial Analysis Intelligence Index 30 per third-party coverage) and await independent verification.</p></div>
+        </article></div>
+    </section>
+<section class="stream-group" aria-labelledby="group-0">
       <h3 class="date-divider" id="group-0">Oct 15</h3>
       <div class="date-stories"><article class="news-card item" data-topics="stack industry">
           <div class="meta-row"><time>OCT 15</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-industry">Models + industry</span></div></div>
@@ -232,7 +264,15 @@
     </section>
 <section class="stream-group" aria-labelledby="group-1">
       <h3 class="date-divider" id="group-1">Oct 14</h3>
-      <div class="date-stories"><article class="news-card item" data-topics="research industry">
+      <div class="date-stories"><article class="news-card item" data-topics="stack research">
+          <div class="meta-row"><time>OCT 14</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-research">Algorithms + papers</span></div></div>
+          <div class="article-copy"><h3>vLLM achieves bitwise-consistent RL training and inference</h3>
+          <p>vLLM’s new post shows training and rollout producing bitwise-identical logprobs (diff = 0) on DeepSeek-V4-Flash, reaching 0 diff at 91.3% of the high-performance baseline’s rollout throughput.</p>
+          <p>The team carried the method to Nemotron-3.5-Lightning, where the consistent run’s SWE-bench Pro score held ~0.6 while the baseline fell from 0.56 to 0.22. The workflow is open-sourced as an agent skill plus recipes and code.</p>
+          <p class="why"><strong>Why:</strong> Train–inference numeric mismatch turns on-policy RL into off-policy RL and can destabilize training—this is a practical, transferable fix squarely in the RL/inference-stack core.</p>
+          <div class="sources"><a class="source" href="https://vllm.ai/blog/2026-10-14-train-inference-consistency" target="_blank" rel="noreferrer">vLLM Blog · Oct 14</a></div>
+          <p class="caveat">Vendor blog; baselines ran a single recipe without thorough tuning or algorithmic corrections, and the end-to-end wall-clock gain from fewer crashes and reruns is not yet shown.</p></div>
+        </article><article class="news-card item" data-topics="research industry">
           <div class="meta-row"><time>OCT 14</time><div class="topic-list"><span class="topic topic-research">Algorithms + papers</span><span class="topic topic-industry">Models + industry</span></div></div>
           <div class="article-copy"><h3>HybridAgent learns when reasoning should stay latent</h3>
           <p>Together.ai and Stanford’s HybridAgent toggles between silent latent reasoning and visible text mid-generation. A lightweight HybridLink surfaces the model to text when it needs to call tools; HybridRL learns when to think versus act.</p>
@@ -605,7 +645,7 @@
 
     <footer class="method">
       <p><strong>Source note.</strong> This digest was compiled from indexed web pages, fetched text, and the stated inbox corroboration covering Sep 10–Oct 17, 2026; none of the web items was checked in a live signed-in browser. Dates are publication or announcement dates stated by the source or paper record. Every open verification question from the research set is marked where it appears.</p>
-      <span class="count" id="visible-count">51 shown</span>
+      <span class="count" id="visible-count">53 shown</span>
     </footer>
   </main>
 
@@ -620,11 +660,15 @@
           var filter = button.getAttribute('data-filter');
           var visible = 0;
           buttons.forEach(function (b) { b.classList.toggle('active', b === button); });
+          var seen = {};
           items.forEach(function (item) {
             var topics = (item.getAttribute('data-topics') || '').split(' ');
             var show = filter === 'all' || topics.indexOf(filter) !== -1;
             item.classList.toggle('hidden', !show);
-            if (show) visible += 1;
+            if (show) {
+              var headline = item.querySelector('h3').textContent;
+              if (!seen[headline]) { seen[headline] = true; visible += 1; }
+            }
           });
           groups.forEach(function (group) {
             group.classList.toggle('hidden', !group.querySelector('.item:not(.hidden)'));
