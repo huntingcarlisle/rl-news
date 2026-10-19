@@ -152,12 +152,29 @@
         <h1 class="site-title">RL News Catch-Up</h1>
         <p class="tagline">Reinforcement learning, agentic systems, and the open training-and-serving stack—ranked for signal and updated as the field moves.</p>
       </div>
-      <time class="updated" datetime="2026-10-18T06:16:38-07:00">Last updated Oct 18, 2026 · 6:16 AM PDT</time>
+      <time class="updated" datetime="2026-10-19T06:16:20-07:00">Last updated Oct 19, 2026 · 6:16 AM PDT</time>
     </header>
 
     <section class="latest" aria-labelledby="latest-heading">
       <div class="section-kicker"><h2 id="latest-heading">Latest</h2><p>3 most recent stories</p></div>
-      <div class="feature-grid"><article class="feature-card item" data-topics="research industry">
+      <div class="feature-grid"><article class="feature-card item" data-topics="stack">
+          <div class="meta-row"><time>OCT 13</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span></div></div>
+          <div class="article-copy"><h3>NVIDIA open-sources Run:ai as part of the DSX AI Factory platform</h3>
+          <p>NVIDIA has published the full Run:ai GPU-orchestration stack as open source—KAI Scheduler, the GPU Fractioning Operator, resource management, and the Workload Map—alongside two related projects. Model Streamer streams model weights directly into GPU memory and is already integrated upstream in vLLM and SGLang (enable it with <code>--load-format runai_streamer</code>; Microsoft benchmarks show 3–6× faster weight loading). Grove, part of NVIDIA Dynamo, is a Kubernetes API for multi-component inference workloads such as disaggregated prefill/decode.</p>
+          <p class="why"><strong>Why:</strong> GPU scheduling and weight loading are the unglamorous bottlenecks of large inference fleets. Open-sourcing the orchestration layer—with the streamer already upstream in both major serving stacks—turns NVIDIA’s AI-factory plumbing into shared infrastructure the whole ecosystem can build on.</p>
+          <div class="sources"><a class="source" href="https://developer.nvidia.com/blog/nvidia-runai-is-now-open-source-as-part-of-nvidia-dsx-ai-factory-platform/" target="_blank" rel="noreferrer">NVIDIA Developer Blog · Oct 13</a></div>
+          <p class="caveat">The community edition carries no enterprise support; the 3–6× weight-loading figure comes from Microsoft benchmarks cited in the announcement.</p></div>
+        </article>
+<article class="feature-card item" data-topics="industry">
+          <div class="meta-row"><time>OCT 7</time><div class="topic-list"><span class="topic topic-industry">Models + industry</span></div></div>
+          <div class="article-copy"><h3>Anthropic releases Claude Haiku 5.5</h3>
+          <p>Anthropic’s cheapest, fastest small model prices at $0.10/$0.50 per 1M input/output tokens for prompts up to 100K tokens—about 75% cheaper on average than Haiku 4.5—with a 1M-token context window and the first adjustable effort setting in the Haiku line, for trading cost against reasoning per task.</p>
+          <p>Vendor-reported benchmarks show a large jump on agentic tasks: 72.4% on the OSWorld 2.1 offline subset versus 15.7% for Haiku 4.5, and 39.2% on Terminal-Bench 4.0 versus 0 for Haiku 4.5. It is positioned for high-volume subagent, compaction, and summarization work.</p>
+          <p class="why"><strong>Why:</strong> Small models do the bulk of agent-fleet work—subagents, compaction, summarization—so a step-change in agentic competence at roughly a quarter of the price resets the economics of every multi-agent system built on them.</p>
+          <div class="sources"><a class="source" href="https://www.marktechpost.com/2026/10/07/anthropic-releases-claude-haiku-5-5-a-small-model-with-1m-context-priced-at-0-10-per-million-input-tokens/" target="_blank" rel="noreferrer">MarkTechPost · Oct 7</a></div>
+          <p class="caveat">Benchmark figures are vendor-reported through the cited coverage and await independent verification.</p></div>
+        </article>
+<article class="feature-card item" data-topics="research industry">
           <div class="meta-row"><time>OCT 18</time><div class="topic-list"><span class="topic topic-research">Algorithms + papers</span><span class="topic topic-industry">Models + industry</span></div></div>
           <div class="article-copy"><h3>DeepSeek releases DeepSeek-V4.1-Flash-1017 with MIT-licensed open weights</h3>
           <p>DeepSeek calls it a “minor update” to DeepSeek-V4.1-Flash (Sep 10), but the gains are substantial across reasoning, coding, agent, and vision benchmarks: Terminal-Bench 4.0 jumps 31.2 → 42.3, DeepSWE v1.1 rises 74.2 → 77.0, and Automation-Bench climbs 54.8 → 60.5, with shorter outputs and faster task completion.</p>
@@ -166,33 +183,17 @@
           <div class="sources"><a class="source" href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017" target="_blank" rel="noreferrer">DeepSeek · Hugging Face model card</a></div>
           <p class="caveat">All benchmark figures are vendor-reported on the model card, with no independent verification yet.</p></div>
         </article>
-<article class="feature-card item" data-topics="stack">
-          <div class="meta-row"><time>OCT 18</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span></div></div>
-          <div class="article-copy"><h3>vLLM hyper-optimizes Kimi K3 decode on GB300 with agent-assisted CuTe DSL kernels</h3>
-          <p>A new opt-in decode path (<code>decode_backend: latency_specialized</code>) fuses nearly all Kimi K3 decode ops into custom CuTe DSL kernels: 842 tokens/s at batch 1 on 16 GB300 GPUs with DSpark (1.73x vs stock vLLM), 1.5–2x decode throughput across tested configs, and 1.8x higher P90 interactivity on the AgentX agentic-serving benchmark.</p>
-          <p>The post also proposes a “fast-track” RFC for shipping agent-written kernel optimizations with isolation, scoped validation, and reproducible benchmarks.</p>
-          <p class="why"><strong>Why:</strong> Agent-written kernels are moving from experiment to a governed shipping path in the main open serving stack—and AgentX is the yardstick they are being measured against, caveats and all.</p>
-          <div class="sources"><a class="source" href="https://vllm.ai/blog/2026-10-16-kimi-k3-megakernel" target="_blank" rel="noreferrer">vLLM Blog · Oct 16</a></div>
-          <p class="caveat">The AgentX comparison pits a 16-GPU optimized run against an earlier 8-GPU baseline, and the DSpark figure uses a synthetic acceptance length of 6.</p></div>
-        </article>
-<article class="feature-card item" data-topics="industry">
-          <div class="meta-row"><time>OCT 17</time><div class="topic-list"><span class="topic topic-industry">Models + industry</span></div></div>
-          <div class="article-copy"><h3>ChinaTalk: the case for DUV controls</h3>
-          <p>Saif Khan of the Center for Technology and Statecraft argues on ChinaTalk that stopping exports of DUV immersion lithography tools is the US’s most consequential lever over the AI balance. CTS modeling projects that halting tool exports today caps China’s indigenous AI-chip production at ~10M H100-equivalents per year by the mid-2030s, versus ~1B per year for the US—while continued exports could let the ranges overlap.</p>
-          <p class="why"><strong>Why:</strong> DUV tools are the most advanced lithography China can still buy, so this frames the chip-supply backdrop behind every RL and inference buildout.</p>
-          <div class="sources"><a class="source" href="https://www.chinatalk.media/p/saif-khan-the-case-for-duv-controls" target="_blank" rel="noreferrer">ChinaTalk · Oct 17</a></div>
-          <p class="caveat">A modeling projection with wide error bars and a policy argument, not enacted policy.</p></div>
-        </article></div>
+</div>
     </section>
 
     <section class="latest-brief" aria-labelledby="brief-heading">
       <h2 id="brief-heading">Latest in brief</h2>
-      <p>DeepSeek ships DeepSeek-V4.1-Flash-1017, an MIT-licensed “minor update” with anything-but-minor agent gains—Terminal-Bench 4.0 up from 31.2 to 42.3, DeepSWE v1.1 at 77.0—now serving every Flash API request. vLLM hyper-optimizes Kimi K3 decode on GB300 with agent-assisted CuTe DSL kernels, reaching 842 tokens/s at batch 1 and 1.8x higher P90 interactivity on AgentX, and proposes a fast-track path for shipping agent-written kernels. ChinaTalk, meanwhile, makes the case that DUV lithography exports are Washington’s most consequential lever over the AI-chip balance.</p>
+      <p>NVIDIA open-sources the full Run:ai GPU-orchestration stack as part of its DSX AI Factory platform—KAI Scheduler, the GPU Fractioning Operator, and the Workload Map—plus Model Streamer, already upstream in vLLM and SGLang with 3–6× faster weight loading in Microsoft benchmarks, and Grove, a Kubernetes API for disaggregated inference under Dynamo. Anthropic’s Claude Haiku 5.5 cuts small-model prices by roughly 75% against Haiku 4.5 while posting a large vendor-reported jump on agentic benchmarks—72.4% on the OSWorld 2.1 offline subset and 39.2% on Terminal-Bench 4.0. And DeepSeek’s V4.1-Flash-1017, an MIT-licensed “minor update” with double-digit agent gains, now serves every Flash API request.</p>
     </section>
 
     <nav class="filters-wrap" aria-label="Filter stories by topic">
       <div class="filters">
-        <button class="filter active" type="button" data-filter="all">All 53</button>
+        <button class="filter active" type="button" data-filter="all">All 55</button>
         <button class="filter" type="button" data-filter="stack">NVIDIA + SGLang</button>
         <button class="filter" type="button" data-filter="safety">Agentic safety</button>
         <button class="filter" type="button" data-filter="research">Algorithms + papers</button>
@@ -201,7 +202,7 @@
     </nav>
 
     <section aria-labelledby="stream-heading">
-      <div class="stream-head"><h2 id="stream-heading">News stream</h2><p>Newest first · all 53 stories remain in the archive</p></div>
+      <div class="stream-head"><h2 id="stream-heading">News stream</h2><p>Newest first · all 55 stories remain in the archive</p></div>
       <div class="news-stream"><section class="stream-group" aria-labelledby="group-oct18">
       <h3 class="date-divider" id="group-oct18">Oct 18</h3>
       <div class="date-stories"><article class="news-card item" data-topics="research industry">
@@ -220,6 +221,17 @@
           <p class="why"><strong>Why:</strong> Agent-written kernels are moving from experiment to a governed shipping path in the main open serving stack—and AgentX is the yardstick they are being measured against, caveats and all.</p>
           <div class="sources"><a class="source" href="https://vllm.ai/blog/2026-10-16-kimi-k3-megakernel" target="_blank" rel="noreferrer">vLLM Blog · Oct 16</a></div>
           <p class="caveat">The AgentX comparison pits a 16-GPU optimized run against an earlier 8-GPU baseline, and the DSpark figure uses a synthetic acceptance length of 6.</p></div>
+        </article></div>
+    </section>
+<section class="stream-group" aria-labelledby="group-oct17">
+      <h3 class="date-divider" id="group-oct17">Oct 17</h3>
+      <div class="date-stories"><article class="news-card item" data-topics="industry">
+          <div class="meta-row"><time>OCT 17</time><div class="topic-list"><span class="topic topic-industry">Models + industry</span></div></div>
+          <div class="article-copy"><h3>ChinaTalk: the case for DUV controls</h3>
+          <p>Saif Khan of the Center for Technology and Statecraft argues on ChinaTalk that stopping exports of DUV immersion lithography tools is the US’s most consequential lever over the AI balance. CTS modeling projects that halting tool exports today caps China’s indigenous AI-chip production at ~10M H100-equivalents per year by the mid-2030s, versus ~1B per year for the US—while continued exports could let the ranges overlap.</p>
+          <p class="why"><strong>Why:</strong> DUV tools are the most advanced lithography China can still buy, so this frames the chip-supply backdrop behind every RL and inference buildout.</p>
+          <div class="sources"><a class="source" href="https://www.chinatalk.media/p/saif-khan-the-case-for-duv-controls" target="_blank" rel="noreferrer">ChinaTalk · Oct 17</a></div>
+          <p class="caveat">A modeling projection with wide error bars and a policy argument, not enacted policy.</p></div>
         </article></div>
     </section>
 <section class="stream-group" aria-labelledby="group-oct16">
@@ -300,7 +312,14 @@
     </section>
 <section class="stream-group" aria-labelledby="group-2">
       <h3 class="date-divider" id="group-2">Oct 13</h3>
-      <div class="date-stories"><article class="news-card item" data-topics="stack research">
+      <div class="date-stories"><article class="news-card item" data-topics="stack">
+          <div class="meta-row"><time>OCT 13</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span></div></div>
+          <div class="article-copy"><h3>NVIDIA open-sources Run:ai as part of the DSX AI Factory platform</h3>
+          <p>NVIDIA has published the full Run:ai GPU-orchestration stack as open source—KAI Scheduler, the GPU Fractioning Operator, resource management, and the Workload Map—alongside two related projects. Model Streamer streams model weights directly into GPU memory and is already integrated upstream in vLLM and SGLang (enable it with <code>--load-format runai_streamer</code>; Microsoft benchmarks show 3–6× faster weight loading). Grove, part of NVIDIA Dynamo, is a Kubernetes API for multi-component inference workloads such as disaggregated prefill/decode.</p>
+          <p class="why"><strong>Why:</strong> GPU scheduling and weight loading are the unglamorous bottlenecks of large inference fleets. Open-sourcing the orchestration layer—with the streamer already upstream in both major serving stacks—turns NVIDIA’s AI-factory plumbing into shared infrastructure the whole ecosystem can build on.</p>
+          <div class="sources"><a class="source" href="https://developer.nvidia.com/blog/nvidia-runai-is-now-open-source-as-part-of-nvidia-dsx-ai-factory-platform/" target="_blank" rel="noreferrer">NVIDIA Developer Blog · Oct 13</a></div>
+          <p class="caveat">The community edition carries no enterprise support; the 3–6× weight-loading figure comes from Microsoft benchmarks cited in the announcement.</p></div>
+        </article><article class="news-card item" data-topics="stack research">
           <div class="meta-row"><time>OCT 13</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-research">Algorithms + papers</span></div></div>
           <div class="article-copy"><h3>ACCRUE carries robot skills forward without forgetting</h3>
           <p>NVIDIA and KAIST’s continual off-policy RL method carries lightweight actor and critic networks across real-world assembly tasks, so each new skill can reuse prior behavioral and value knowledge.</p>
@@ -432,7 +451,15 @@
     </section>
 <section class="stream-group" aria-labelledby="group-7">
       <h3 class="date-divider" id="group-7">Oct 7</h3>
-      <div class="date-stories"><article class="news-card item" data-topics="stack safety">
+      <div class="date-stories"><article class="news-card item" data-topics="industry">
+          <div class="meta-row"><time>OCT 7</time><div class="topic-list"><span class="topic topic-industry">Models + industry</span></div></div>
+          <div class="article-copy"><h3>Anthropic releases Claude Haiku 5.5</h3>
+          <p>Anthropic’s cheapest, fastest small model prices at $0.10/$0.50 per 1M input/output tokens for prompts up to 100K tokens—about 75% cheaper on average than Haiku 4.5—with a 1M-token context window and the first adjustable effort setting in the Haiku line, for trading cost against reasoning per task.</p>
+          <p>Vendor-reported benchmarks show a large jump on agentic tasks: 72.4% on the OSWorld 2.1 offline subset versus 15.7% for Haiku 4.5, and 39.2% on Terminal-Bench 4.0 versus 0 for Haiku 4.5. It is positioned for high-volume subagent, compaction, and summarization work.</p>
+          <p class="why"><strong>Why:</strong> Small models do the bulk of agent-fleet work—subagents, compaction, summarization—so a step-change in agentic competence at roughly a quarter of the price resets the economics of every multi-agent system built on them.</p>
+          <div class="sources"><a class="source" href="https://www.marktechpost.com/2026/10/07/anthropic-releases-claude-haiku-5-5-a-small-model-with-1m-context-priced-at-0-10-per-million-input-tokens/" target="_blank" rel="noreferrer">MarkTechPost · Oct 7</a></div>
+          <p class="caveat">Benchmark figures are vendor-reported through the cited coverage and await independent verification.</p></div>
+        </article><article class="news-card item" data-topics="stack safety">
           <div class="meta-row"><time>OCT 7</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-safety">Agentic safety</span></div></div>
           <div class="article-copy"><h3>LMCache has an unpatched 9.8-severity RCE</h3>
           <p>JFrog disclosed CVE-2026-105192 in LMCache, the vLLM caching layer. In multiprocess mode, the server listens on an unauthenticated ZeroMQ socket and unpickles incoming messages, enabling remote code execution—running as root in the official containers.</p>
@@ -645,7 +672,7 @@
 
     <footer class="method">
       <p><strong>Source note.</strong> This digest was compiled from indexed web pages, fetched text, and the stated inbox corroboration covering Sep 10–Oct 17, 2026; none of the web items was checked in a live signed-in browser. Dates are publication or announcement dates stated by the source or paper record. Every open verification question from the research set is marked where it appears.</p>
-      <span class="count" id="visible-count">53 shown</span>
+      <span class="count" id="visible-count">55 shown</span>
     </footer>
   </main>
 
