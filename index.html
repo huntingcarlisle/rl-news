@@ -152,48 +152,46 @@
         <h1 class="site-title">RL News Catch-Up</h1>
         <p class="tagline">Reinforcement learning, agentic systems, and the open training-and-serving stack—ranked for signal and updated as the field moves.</p>
       </div>
-      <time class="updated" datetime="2026-10-19T06:16:20-07:00">Last updated Oct 19, 2026 · 6:16 AM PDT</time>
+      <time class="updated" datetime="2026-10-20T06:20:26-07:00">Last updated Oct 20, 2026 · 6:20 AM PDT</time>
     </header>
 
     <section class="latest" aria-labelledby="latest-heading">
       <div class="section-kicker"><h2 id="latest-heading">Latest</h2><p>3 most recent stories</p></div>
-      <div class="feature-grid"><article class="feature-card item" data-topics="stack">
-          <div class="meta-row"><time>OCT 13</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span></div></div>
-          <div class="article-copy"><h3>NVIDIA open-sources Run:ai as part of the DSX AI Factory platform</h3>
-          <p>NVIDIA has published the full Run:ai GPU-orchestration stack as open source—KAI Scheduler, the GPU Fractioning Operator, resource management, and the Workload Map—alongside two related projects. Model Streamer streams model weights directly into GPU memory and is already integrated upstream in vLLM and SGLang (enable it with <code>--load-format runai_streamer</code>; Microsoft benchmarks show 3–6× faster weight loading). Grove, part of NVIDIA Dynamo, is a Kubernetes API for multi-component inference workloads such as disaggregated prefill/decode.</p>
-          <p class="why"><strong>Why:</strong> GPU scheduling and weight loading are the unglamorous bottlenecks of large inference fleets. Open-sourcing the orchestration layer—with the streamer already upstream in both major serving stacks—turns NVIDIA’s AI-factory plumbing into shared infrastructure the whole ecosystem can build on.</p>
-          <div class="sources"><a class="source" href="https://developer.nvidia.com/blog/nvidia-runai-is-now-open-source-as-part-of-nvidia-dsx-ai-factory-platform/" target="_blank" rel="noreferrer">NVIDIA Developer Blog · Oct 13</a></div>
-          <p class="caveat">The community edition carries no enterprise support; the 3–6× weight-loading figure comes from Microsoft benchmarks cited in the announcement.</p></div>
+      <div class="feature-grid"><article class="feature-card item" data-topics="stack research">
+          <div class="meta-row"><time>OCT 20</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-research">Algorithms + papers</span></div></div>
+          <div class="article-copy"><h3>Google Cloud releases llm-d 1.0, a Kubernetes-native stack for distributed LLM inference</h3>
+          <p>Announced at the PyTorch Conference, llm-d 1.0 is an open-source, Kubernetes-native stack for distributed LLM inference, co-founded by Google with Red Hat, IBM, and 25+ organizations, with 500+ contributors as a CNCF Sandbox project. It is built for agentic workloads and RL rollouts that fan out across tools, share long prefixes, and arrive in bursts: cache-aware routing, tiered KV cache, and priority flow control turn a cluster of vLLM/SGLang servers into one coordinated serving pool.</p>
+          <p>The keynote demo ran 1,000 sandboxed agents on Agent Substrate hitting a single llm-d endpoint across vLLM, SGLang, and mixed Google Cloud TPUs/GPUs. Version 1.0 adds multi-tenant QoS, zero-downtime rolling upgrades, and a v1 config API.</p>
+          <p class="why"><strong>Why:</strong> It directly targets the agentic/RL-rollout serving shape both vLLM and SGLang are optimizing for; SGLang/vLLM interop at the cluster layer means disaggregated prefill/decode and prefix-cache wins compound across engines.</p>
+          <div class="sources"><a class="source" href="https://cloud.google.com/blog/topics/ai-infrastructure/llm-d-1-0-an-open-source-stack-for-distributed-inference" target="_blank" rel="noreferrer">Google Cloud Blog · Oct 20</a></div></div>
         </article>
 <article class="feature-card item" data-topics="industry">
-          <div class="meta-row"><time>OCT 7</time><div class="topic-list"><span class="topic topic-industry">Models + industry</span></div></div>
-          <div class="article-copy"><h3>Anthropic releases Claude Haiku 5.5</h3>
-          <p>Anthropic’s cheapest, fastest small model prices at $0.10/$0.50 per 1M input/output tokens for prompts up to 100K tokens—about 75% cheaper on average than Haiku 4.5—with a 1M-token context window and the first adjustable effort setting in the Haiku line, for trading cost against reasoning per task.</p>
-          <p>Vendor-reported benchmarks show a large jump on agentic tasks: 72.4% on the OSWorld 2.1 offline subset versus 15.7% for Haiku 4.5, and 39.2% on Terminal-Bench 4.0 versus 0 for Haiku 4.5. It is positioned for high-volume subagent, compaction, and summarization work.</p>
-          <p class="why"><strong>Why:</strong> Small models do the bulk of agent-fleet work—subagents, compaction, summarization—so a step-change in agentic competence at roughly a quarter of the price resets the economics of every multi-agent system built on them.</p>
-          <div class="sources"><a class="source" href="https://www.marktechpost.com/2026/10/07/anthropic-releases-claude-haiku-5-5-a-small-model-with-1m-context-priced-at-0-10-per-million-input-tokens/" target="_blank" rel="noreferrer">MarkTechPost · Oct 7</a></div>
-          <p class="caveat">Benchmark figures are vendor-reported through the cited coverage and await independent verification.</p></div>
+          <div class="meta-row"><time>OCT 20</time><div class="topic-list"><span class="topic topic-industry">Models + industry</span></div></div>
+          <div class="article-copy"><h3>ByteDance, Alibaba, and Tencent order 3M+ NVIDIA RTX PRO 5500 cards worth over $35B</h3>
+          <p>The RTX PRO 5500 is a workstation card, but among the most powerful NVIDIA chips still exportable to China—Blackwell B300 is banned, and Hopper H200 exports are case-by-case. At roughly $11,400 per card, total China orders reportedly exceed 6M units against at most ~3M cards of global 2027 production; one source said partners may receive only 5–10% of requested quantities, and NVIDIA cannot guarantee supply.</p>
+          <p class="why"><strong>Why:</strong> The scale of the China demand overhang frames both export-policy leverage—tying into the DUV-controls thread—and Blackwell-era supply allocation.</p>
+          <div class="sources"><a class="source" href="https://www.reuters.com/business/retail-consumer/bytedance-alibaba-tencent-place-over-35-billion-worth-nvidia-chip-orders-2026-10-20/" target="_blank" rel="noreferrer">Reuters · Oct 20</a></div>
+          <p class="caveat">Anonymous-source reporting, not previously reported and not confirmed by NVIDIA.</p></div>
         </article>
-<article class="feature-card item" data-topics="research industry">
-          <div class="meta-row"><time>OCT 18</time><div class="topic-list"><span class="topic topic-research">Algorithms + papers</span><span class="topic topic-industry">Models + industry</span></div></div>
-          <div class="article-copy"><h3>DeepSeek releases DeepSeek-V4.1-Flash-1017 with MIT-licensed open weights</h3>
-          <p>DeepSeek calls it a “minor update” to DeepSeek-V4.1-Flash (Sep 10), but the gains are substantial across reasoning, coding, agent, and vision benchmarks: Terminal-Bench 4.0 jumps 31.2 → 42.3, DeepSWE v1.1 rises 74.2 → 77.0, and Automation-Bench climbs 54.8 → 60.5, with shorter outputs and faster task completion.</p>
-          <p>DeepSeek describes training the model on feedback from its own attempts at building complete projects. The weights are MIT-licensed, and the update now serves all Flash API requests.</p>
-          <p class="why"><strong>Why:</strong> The Flash line is the open-weight workhorse for cheap inference and agentic RL rollouts—double-digit agent-benchmark gains in a point release, shipped straight into the default API path, reset the baseline everyone trains and serves against.</p>
-          <div class="sources"><a class="source" href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017" target="_blank" rel="noreferrer">DeepSeek · Hugging Face model card</a></div>
-          <p class="caveat">All benchmark figures are vendor-reported on the model card, with no independent verification yet.</p></div>
+<article class="feature-card item" data-topics="stack">
+          <div class="meta-row"><time>OCT 18</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span></div></div>
+          <div class="article-copy"><h3>vLLM v0.32.0 adds a POST /v1/systemone endpoint for structured decisions</h3>
+          <p>The structured-decisions feature gives choice-type single-token classification on autoregressive models a dedicated endpoint: each question is one engine read—a prefilled reply, one generated token, and a softmax over label tokens—with label-bias handling via an A–ZZ label sweep and a per-question shuffle.</p>
+          <p class="why"><strong>Why:</strong> Native single-token judgment serving in vLLM closes a gap with Jev-style decision models and reward-model scoring flows.</p>
+          <div class="sources"><a class="source" href="https://olud.ai/news/2026-10-18.html" target="_blank" rel="noreferrer">olud.ai · Oct 18</a></div>
+          <p class="caveat">Surfaced via a daily release-tracking digest, not the official release notes.</p></div>
         </article>
 </div>
     </section>
 
     <section class="latest-brief" aria-labelledby="brief-heading">
       <h2 id="brief-heading">Latest in brief</h2>
-      <p>NVIDIA open-sources the full Run:ai GPU-orchestration stack as part of its DSX AI Factory platform—KAI Scheduler, the GPU Fractioning Operator, and the Workload Map—plus Model Streamer, already upstream in vLLM and SGLang with 3–6× faster weight loading in Microsoft benchmarks, and Grove, a Kubernetes API for disaggregated inference under Dynamo. Anthropic’s Claude Haiku 5.5 cuts small-model prices by roughly 75% against Haiku 4.5 while posting a large vendor-reported jump on agentic benchmarks—72.4% on the OSWorld 2.1 offline subset and 39.2% on Terminal-Bench 4.0. And DeepSeek’s V4.1-Flash-1017, an MIT-licensed “minor update” with double-digit agent gains, now serves every Flash API request.</p>
+      <p>Google Cloud’s llm-d 1.0 turns clusters of vLLM and SGLang servers into one coordinated, cache-aware serving pool built for agentic workloads and RL rollouts—demoed with 1,000 sandboxed agents on Agent Substrate hitting a single endpoint across vLLM, SGLang, and mixed TPUs/GPUs. Reuters reports ByteDance, Alibaba, and Tencent have ordered 3M+ NVIDIA RTX PRO 5500 cards worth over $35B, against at most ~3M cards of global 2027 production. And vLLM v0.32.0 adds a /v1/systemone endpoint for single-token structured decisions. In the catch-ups: Microsoft Research Asia’s Agent Lightning v1.0 formalizes harness-retaining agentic RL, Artificial Analysis posts the first independent AA-AgentPerf numbers for Vera Rubin NVL72, Tencent’s Hy-Memory trains an RL memory writer with open weights, and Paper Instruments’ Ultramarine 1 Flash claims frontier-adjacent knowledge-work economics from a ~$300K RL post-train.</p>
     </section>
 
     <nav class="filters-wrap" aria-label="Filter stories by topic">
       <div class="filters">
-        <button class="filter active" type="button" data-filter="all">All 55</button>
+        <button class="filter active" type="button" data-filter="all">All 62</button>
         <button class="filter" type="button" data-filter="stack">NVIDIA + SGLang</button>
         <button class="filter" type="button" data-filter="safety">Agentic safety</button>
         <button class="filter" type="button" data-filter="research">Algorithms + papers</button>
@@ -202,10 +200,35 @@
     </nav>
 
     <section aria-labelledby="stream-heading">
-      <div class="stream-head"><h2 id="stream-heading">News stream</h2><p>Newest first · all 55 stories remain in the archive</p></div>
-      <div class="news-stream"><section class="stream-group" aria-labelledby="group-oct18">
+      <div class="stream-head"><h2 id="stream-heading">News stream</h2><p>Newest first · all 62 stories remain in the archive</p></div>
+      <div class="news-stream"><section class="stream-group" aria-labelledby="group-oct20">
+      <h3 class="date-divider" id="group-oct20">Oct 20</h3>
+      <div class="date-stories"><article class="news-card item" data-topics="stack research">
+          <div class="meta-row"><time>OCT 20</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-research">Algorithms + papers</span></div></div>
+          <div class="article-copy"><h3>Google Cloud releases llm-d 1.0, a Kubernetes-native stack for distributed LLM inference</h3>
+          <p>Announced at the PyTorch Conference, llm-d 1.0 is an open-source, Kubernetes-native stack for distributed LLM inference, co-founded by Google with Red Hat, IBM, and 25+ organizations, with 500+ contributors as a CNCF Sandbox project. It is built for agentic workloads and RL rollouts that fan out across tools, share long prefixes, and arrive in bursts: cache-aware routing, tiered KV cache, and priority flow control turn a cluster of vLLM/SGLang servers into one coordinated serving pool.</p>
+          <p>The keynote demo ran 1,000 sandboxed agents on Agent Substrate hitting a single llm-d endpoint across vLLM, SGLang, and mixed Google Cloud TPUs/GPUs. Version 1.0 adds multi-tenant QoS, zero-downtime rolling upgrades, and a v1 config API.</p>
+          <p class="why"><strong>Why:</strong> It directly targets the agentic/RL-rollout serving shape both vLLM and SGLang are optimizing for; SGLang/vLLM interop at the cluster layer means disaggregated prefill/decode and prefix-cache wins compound across engines.</p>
+          <div class="sources"><a class="source" href="https://cloud.google.com/blog/topics/ai-infrastructure/llm-d-1-0-an-open-source-stack-for-distributed-inference" target="_blank" rel="noreferrer">Google Cloud Blog · Oct 20</a></div></div>
+        </article><article class="news-card item" data-topics="industry">
+          <div class="meta-row"><time>OCT 20</time><div class="topic-list"><span class="topic topic-industry">Models + industry</span></div></div>
+          <div class="article-copy"><h3>ByteDance, Alibaba, and Tencent order 3M+ NVIDIA RTX PRO 5500 cards worth over $35B</h3>
+          <p>The RTX PRO 5500 is a workstation card, but among the most powerful NVIDIA chips still exportable to China—Blackwell B300 is banned, and Hopper H200 exports are case-by-case. At roughly $11,400 per card, total China orders reportedly exceed 6M units against at most ~3M cards of global 2027 production; one source said partners may receive only 5–10% of requested quantities, and NVIDIA cannot guarantee supply.</p>
+          <p class="why"><strong>Why:</strong> The scale of the China demand overhang frames both export-policy leverage—tying into the DUV-controls thread—and Blackwell-era supply allocation.</p>
+          <div class="sources"><a class="source" href="https://www.reuters.com/business/retail-consumer/bytedance-alibaba-tencent-place-over-35-billion-worth-nvidia-chip-orders-2026-10-20/" target="_blank" rel="noreferrer">Reuters · Oct 20</a></div>
+          <p class="caveat">Anonymous-source reporting, not previously reported and not confirmed by NVIDIA.</p></div>
+        </article></div>
+    </section>
+<section class="stream-group" aria-labelledby="group-oct18">
       <h3 class="date-divider" id="group-oct18">Oct 18</h3>
-      <div class="date-stories"><article class="news-card item" data-topics="research industry">
+      <div class="date-stories"><article class="news-card item" data-topics="stack">
+          <div class="meta-row"><time>OCT 18</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span></div></div>
+          <div class="article-copy"><h3>vLLM v0.32.0 adds a POST /v1/systemone endpoint for structured decisions</h3>
+          <p>The structured-decisions feature gives choice-type single-token classification on autoregressive models a dedicated endpoint: each question is one engine read—a prefilled reply, one generated token, and a softmax over label tokens—with label-bias handling via an A–ZZ label sweep and a per-question shuffle.</p>
+          <p class="why"><strong>Why:</strong> Native single-token judgment serving in vLLM closes a gap with Jev-style decision models and reward-model scoring flows.</p>
+          <div class="sources"><a class="source" href="https://olud.ai/news/2026-10-18.html" target="_blank" rel="noreferrer">olud.ai · Oct 18</a></div>
+          <p class="caveat">Surfaced via a daily release-tracking digest, not the official release notes.</p></div>
+        </article><article class="news-card item" data-topics="research industry">
           <div class="meta-row"><time>OCT 18</time><div class="topic-list"><span class="topic topic-research">Algorithms + papers</span><span class="topic topic-industry">Models + industry</span></div></div>
           <div class="article-copy"><h3>DeepSeek releases DeepSeek-V4.1-Flash-1017 with MIT-licensed open weights</h3>
           <p>DeepSeek calls it a “minor update” to DeepSeek-V4.1-Flash (Sep 10), but the gains are substantial across reasoning, coding, agent, and vision benchmarks: Terminal-Bench 4.0 jumps 31.2 → 42.3, DeepSWE v1.1 rises 74.2 → 77.0, and Automation-Bench climbs 54.8 → 60.5, with shorter outputs and faster task completion.</p>
@@ -250,6 +273,21 @@
       <h3 class="date-divider" id="group-0">Oct 15</h3>
       <div class="date-stories"><article class="news-card item" data-topics="stack industry">
           <div class="meta-row"><time>OCT 15</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-industry">Models + industry</span></div></div>
+          <div class="article-copy"><h3>Artificial Analysis posts first AA-AgentPerf results for NVIDIA Vera Rubin NVL72</h3>
+          <p>AA-AgentPerf replays real coding-agent trajectories with long contexts and KV-cache reuse, plotting server throughput per MW of measured GPU power against p25 per-request output speed. Versus GB300 NVL72, Rubin posts ~5.7× throughput per MW on DeepSeek V4 Pro at ~190 tok/s per user, ~5.4× on DeepSeek V4.1 Flash at ~580 tok/s, ~3.0× on GLM-5.2 at ~165 tok/s, and ~2.8× on Kimi K3 at ~67 tok/s; peak-throughput leads are narrower, about 1.14× to 1.45×.</p>
+          <p>Rubin’s fastest configs also set the leaderboard highs for DeepSeek V4.1 Flash (906 tok/s), GLM-5.2 (408 tok/s), and Kimi K3 (255 tok/s).</p>
+          <p class="why"><strong>Why:</strong> First independent agentic-workload numbers for Rubin rack-scale—the per-MW framing complements the vendor 4.8×/3.7× MLPerf lines from the launch comms.</p>
+          <div class="sources"><a class="source" href="https://dailycited.com/d/2026-10-16/" target="_blank" rel="noreferrer">DailyCited · Oct 16, citing Artificial Analysis</a></div>
+          <p class="caveat">Surfaced via an aggregator; peak-throughput and per-MW figures measure different things.</p></div>
+        </article><article class="news-card item" data-topics="research industry">
+          <div class="meta-row"><time>OCT 15</time><div class="topic-list"><span class="topic topic-research">Algorithms + papers</span><span class="topic topic-industry">Models + industry</span></div></div>
+          <div class="article-copy"><h3>Tencent Hunyuan releases Hy-Memory-30B-A3B, an RL-trained long-term memory writer</h3>
+          <p>The ~3B-active model runs the write path inside external memory frameworks (Mem0, MemOS, Hy-Memory)—deciding what to retain, how to represent it, and how new evidence updates the bank. It was trained with Memory On-Policy Distillation followed by Attributed Memory Reinforcement Learning, and its macro average of 55.49 tops Claude Opus 5 (54.62) and DeepSeek V4.1 Flash (53.64) on a six-metric, four-harness subsample.</p>
+          <p>Weights are on Hugging Face, framework code on GitHub, and a technical report on arXiv.</p>
+          <p class="why"><strong>Why:</strong> RL-trained memory writers are a new post-training surface for long-horizon agents; open weights make it an immediate experiment candidate.</p>
+          <div class="sources"><a class="source" href="https://dailycited.com/d/2026-10-16/" target="_blank" rel="noreferrer">DailyCited · Oct 16, citing Hugging Face</a></div></div>
+        </article><article class="news-card item" data-topics="stack industry">
+          <div class="meta-row"><time>OCT 15</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-industry">Models + industry</span></div></div>
           <div class="article-copy"><h3>Meta releases Muse Spark Open for agentic coding</h3>
           <p>Meta released open weights for Muse Spark Open, an 816B-total / 42B-active MoE model for agentic coding with a 1M-token context window.</p>
           <p>The release includes custom auto-tunable Helion GPU kernels for SGLang, with Meta claiming 1.03–3.95× kernel-level speedups. The model can also run across two Apple M5 Ultra Mac Studios through MLX.</p>
@@ -276,7 +314,14 @@
     </section>
 <section class="stream-group" aria-labelledby="group-1">
       <h3 class="date-divider" id="group-1">Oct 14</h3>
-      <div class="date-stories"><article class="news-card item" data-topics="stack research">
+      <div class="date-stories"><article class="news-card item" data-topics="research industry">
+          <div class="meta-row"><time>OCT 14</time><div class="topic-list"><span class="topic topic-research">Algorithms + papers</span><span class="topic topic-industry">Models + industry</span></div></div>
+          <div class="article-copy"><h3>Paper Instruments releases Ultramarine 1 Flash, an RL post-train of GLM-5.3 Flash for knowledge work</h3>
+          <p>A five-person team post-trained Zhipu’s GLM-5.3 Flash for roughly $300,000; the model is available now via API, with open weights promised but not released as of Oct 15. Vendor-reported results put it at 59.3 on the company’s internal PI Knowledge Work suite at $0.13 per task, versus 57.8 at $8.19 per task for Claude Fable 5.</p>
+          <p class="why"><strong>Why:</strong> A cheap, tiny-team RL post-train claiming frontier-adjacent knowledge-work economics is the Jev-era pattern repeating for general knowledge work.</p>
+          <div class="sources"><a class="source" href="https://dailycited.com/d/2026-10-15/" target="_blank" rel="noreferrer">DailyCited · Oct 15, citing Paper Instruments</a></div>
+          <p class="caveat">Vendor-reported benchmarks only; weights not yet released.</p></div>
+        </article><article class="news-card item" data-topics="stack research">
           <div class="meta-row"><time>OCT 14</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-research">Algorithms + papers</span></div></div>
           <div class="article-copy"><h3>vLLM achieves bitwise-consistent RL training and inference</h3>
           <p>vLLM’s new post shows training and rollout producing bitwise-identical logprobs (diff = 0) on DeepSeek-V4-Flash, reaching 0 diff at 91.3% of the high-performance baseline’s rollout throughput.</p>
@@ -451,7 +496,15 @@
     </section>
 <section class="stream-group" aria-labelledby="group-7">
       <h3 class="date-divider" id="group-7">Oct 7</h3>
-      <div class="date-stories"><article class="news-card item" data-topics="industry">
+      <div class="date-stories"><article class="news-card item" data-topics="research industry">
+          <div class="meta-row"><time>OCT 7</time><div class="topic-list"><span class="topic topic-research">Algorithms + papers</span><span class="topic topic-industry">Models + industry</span></div></div>
+          <div class="article-copy"><h3>Microsoft Research Asia details Agent Lightning v1.0, its “harnessed agentic RL” framework</h3>
+          <p>The open-source framework (MIT, ~3,500 lines of core code, public since Aug 2026) puts an OpenAI-compatible LLM proxy between a production agent harness and the model, capturing request/response pairs, logprobs, and rollout events for RL—so the harness keeps managing tools, context, and control flow instead of being rebuilt inside the trainer.</p>
+          <p>The reference coding pipeline lifts Qwen3.5-9B from 41.8% to 56.4% pass@1 on SWE-bench Verified with ~6,000 samples on moderate compute; the trainer is built on verl with collocated async rollouts and updates.</p>
+          <p class="why"><strong>Why:</strong> It formalizes the harness-retaining training pattern—also adopted by verl Uni-Agent, AReaL 2.0, and slime—that shrinks the train/serve gap for agentic RL.</p>
+          <div class="sources"><a class="source" href="https://www.neoteo.com/en/microsofts-agent-lightning-keeps-the-deployment-harness-in-agent-training" target="_blank" rel="noreferrer">NeoTeo · Oct 7, summarizing Microsoft Research</a></div>
+          <p class="caveat">Results are Microsoft-reported on one configuration.</p></div>
+        </article><article class="news-card item" data-topics="industry">
           <div class="meta-row"><time>OCT 7</time><div class="topic-list"><span class="topic topic-industry">Models + industry</span></div></div>
           <div class="article-copy"><h3>Anthropic releases Claude Haiku 5.5</h3>
           <p>Anthropic’s cheapest, fastest small model prices at $0.10/$0.50 per 1M input/output tokens for prompts up to 100K tokens—about 75% cheaper on average than Haiku 4.5—with a 1M-token context window and the first adjustable effort setting in the Haiku line, for trading cost against reasoning per task.</p>
@@ -671,8 +724,8 @@
     </section>
 
     <footer class="method">
-      <p><strong>Source note.</strong> This digest was compiled from indexed web pages, fetched text, and the stated inbox corroboration covering Sep 10–Oct 17, 2026; none of the web items was checked in a live signed-in browser. Dates are publication or announcement dates stated by the source or paper record. Every open verification question from the research set is marked where it appears.</p>
-      <span class="count" id="visible-count">55 shown</span>
+      <p><strong>Source note.</strong> This digest was compiled from indexed web pages, fetched text, and the stated inbox corroboration covering Sep 10–Oct 20, 2026; none of the web items was checked in a live signed-in browser. Dates are publication or announcement dates stated by the source or paper record. Every open verification question from the research set is marked where it appears.</p>
+      <span class="count" id="visible-count">62 shown</span>
     </footer>
   </main>
 
