@@ -157,42 +157,42 @@
 
     <section class="latest" aria-labelledby="latest-heading">
       <div class="section-kicker"><h2 id="latest-heading">Latest</h2><p>3 most recent stories</p></div>
-      <div class="feature-grid"><article class="feature-card item" data-topics="stack industry">
-          <div class="meta-row"><time>OCT 21</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-industry">Models + industry</span></div></div>
-          <div class="article-copy"><h3>DeepSeek open-sources DeepInfer — its production inference stack for V4.1-Flash</h3>
-          <p>DeepSeek published DeepInfer on GitHub under Apache 2.0 on Oct 20 — the inference engine it says runs its own production services, timed to day 1 of PyTorch Conf, a reversal of its April 2025 position that it would not release the full engine. The README credits its lineage directly: “originally built primarily on vLLM, with additional inspiration from SGLang and TensorRT-LLM.”</p>
-          <p>The first release targets DeepSeek-V4.1-Flash (offline mode only) and ships FlashMLA, DeepGEMM, DeepEP and TileLang kernels; MoE expert parallelism with EPLB load balancing; DSpark confidence-scheduled speculative decoding; and a ~100 PiB 3FS persistent prefix cache. It runs on NVIDIA SM100 (CUDA 13) and Huawei Ascend 950 (CANN 9.2) — the first time a frontier lab has shipped first-class support for both. DeepSeek’s first-party figures: 155 trillion tokens/day per cluster at a 96% input-cache hit rate, ~400 ms average TTFT, and 230 tok/s generation; vLLM answered with a matched comparison showing decode throughput within 6% on GB200.</p>
-          <p class="why"><strong>Why:</strong> This is the first time a leading lab has open-sourced its production serving stack rather than just components — and it’s a fork lineage of vLLM/SGLang itself, so the playbook (persistent prefix caches, expert-parallel load balancing, adaptive speculative decoding, SWA replay) is directly importable competitive intel for the SGLang/vLLM inference ecosystem.</p>
-          <div class="sources"><a class="source" href="https://cryptobriefing.com/deepseek-open-sources-deepinfer-inference-framework/" target="_blank" rel="noreferrer">CryptoBriefing · Oct 21</a><a class="source" href="https://madrobot.blog/2026/10/20/deepseek-deepinfer-open-source-inference-engine-huawei-ascend-nvidia/" target="_blank" rel="noreferrer">madrobot.blog · Oct 20</a></div>
-          <p class="caveat">All production figures are DeepSeek’s own, not independently audited; the open release excludes the KV-cache management system, prefill/decode disaggregation, and load balancing.</p></div>
+      <div class="feature-grid"><article class="feature-card item" data-topics="research">
+          <div class="meta-row"><time>OCT 21</time><div class="topic-list"><span class="topic topic-research">RL</span><span class="topic topic-research">Agentic RL</span><span class="topic topic-research">Coding agents</span><span class="topic topic-research">SWE-bench</span></div></div>
+          <div class="article-copy"><h3>HarnessAdapt-RL co-trains the policy and its harness in one RL run</h3>
+          <p>HarnessAdapt-RL trains a coding agent’s policy and its tool-and-hook harness together in the same RL run, rather than treating the harness as fixed scaffolding. On a 9B Qwen base it lifts pass@1 over a GRPO baseline by +9.8 points on SWE-bench Verified, +12.6 on SWE-bench Multilingual, and +6.4 on SWE-bench Pro.</p>
+          <p>The split that matters: mechanism-level skills generated during training survive removal of the harness at deployment, but the evolved tools and hooks must ship with the model — the trained artifact is a model–harness pair, not weights alone.</p>
+          <p class="why"><strong>Why:</strong> The harness is becoming a trainable — and shippable — part of the RL result, which changes what “releasing the model” means for agent stacks and pushes harness-retaining training frameworks one step further: not just keeping the harness in the loop, but optimizing it.</p>
+          <div class="sources"><a class="source" href="https://aiweekly.co/alerts/harnessadapt-rl-lifts-9b-agent-126-pts-on-swe-bench-multilingual" target="_blank" rel="noreferrer">AIWeekly · Oct 21</a></div>
+          <p class="caveat">Gains are project-reported via AIWeekly coverage, measured against a GRPO baseline on one 9B base; reproducing them requires shipping the evolved harness alongside the weights.</p></div>
         </article>
-<article class="feature-card item" data-topics="stack research">
-          <div class="meta-row"><time>OCT 20</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-research">Algorithms + papers</span></div></div>
-          <div class="article-copy"><h3>Google Cloud releases llm-d 1.0, a Kubernetes-native stack for distributed LLM inference</h3>
-          <p>Announced at the PyTorch Conference, llm-d 1.0 is an open-source, Kubernetes-native stack for distributed LLM inference, co-founded by Google with Red Hat, IBM, and 25+ organizations, with 500+ contributors as a CNCF Sandbox project. It is built for agentic workloads and RL rollouts that fan out across tools, share long prefixes, and arrive in bursts: cache-aware routing, tiered KV cache, and priority flow control turn a cluster of vLLM/SGLang servers into one coordinated serving pool.</p>
-          <p>The keynote demo ran 1,000 sandboxed agents on Agent Substrate hitting a single llm-d endpoint across vLLM, SGLang, and mixed Google Cloud TPUs/GPUs. Version 1.0 adds multi-tenant QoS, zero-downtime rolling upgrades, and a v1 config API.</p>
-          <p class="why"><strong>Why:</strong> It directly targets the agentic/RL-rollout serving shape both vLLM and SGLang are optimizing for; SGLang/vLLM interop at the cluster layer means disaggregated prefill/decode and prefix-cache wins compound across engines.</p>
-          <div class="sources"><a class="source" href="https://cloud.google.com/blog/topics/ai-infrastructure/llm-d-1-0-an-open-source-stack-for-distributed-inference" target="_blank" rel="noreferrer">Google Cloud Blog · Oct 20</a></div></div>
+<article class="feature-card item" data-topics="stack industry">
+          <div class="meta-row"><time>OCT 21</time><div class="topic-list"><span class="topic topic-stack">NVIDIA</span><span class="topic topic-industry">Open weights</span><span class="topic topic-stack">RAG</span><span class="topic topic-stack">Inference</span></div></div>
+          <div class="article-copy"><h3>NVIDIA opens its retrieval layer — open embed, rerank and parse models, weights and recipes included</h3>
+          <p>NVIDIA has released open embed, rerank and parse models with weights, data and training recipes on Hugging Face, served as NVIDIA NIM microservices and carried by inference partners Baseten, DeepInfra, FriendliAI and OpenRouter. Partner evaluations from Perplexity and Turbopuffer position the reranker at the top of their tests.</p>
+          <p class="why"><strong>Why:</strong> Retrieval decides what agents know; opening this layer — recipes included, not just weights — extends NVIDIA’s stack from generation into the context pipeline every RAG and agent system depends on.</p>
+          <div class="sources"><a class="source" href="https://forkast.news/nvidia-opens-the-retrieval-layer-embed-rerank-and-parse-decide-what-agents-know/" target="_blank" rel="noreferrer">Forkast · Oct 21</a></div>
+          <p class="caveat">Partner evaluations are vendor-reported; the reranker’s top placement comes from partner-run tests, not independent benchmarks.</p></div>
         </article>
-<article class="feature-card item" data-topics="industry">
-          <div class="meta-row"><time>OCT 20</time><div class="topic-list"><span class="topic topic-industry">Models + industry</span></div></div>
-          <div class="article-copy"><h3>ByteDance, Alibaba, and Tencent order 3M+ NVIDIA RTX PRO 5500 cards worth over $35B</h3>
-          <p>The RTX PRO 5500 is a workstation card, but among the most powerful NVIDIA chips still exportable to China—Blackwell B300 is banned, and Hopper H200 exports are case-by-case. At roughly $11,400 per card, total China orders reportedly exceed 6M units against at most ~3M cards of global 2027 production; one source said partners may receive only 5–10% of requested quantities, and NVIDIA cannot guarantee supply.</p>
-          <p class="why"><strong>Why:</strong> The scale of the China demand overhang frames both export-policy leverage—tying into the DUV-controls thread—and Blackwell-era supply allocation.</p>
-          <div class="sources"><a class="source" href="https://www.reuters.com/business/retail-consumer/bytedance-alibaba-tencent-place-over-35-billion-worth-nvidia-chip-orders-2026-10-20/" target="_blank" rel="noreferrer">Reuters · Oct 20</a></div>
-          <p class="caveat">Anonymous-source reporting, not previously reported and not confirmed by NVIDIA.</p></div>
+<article class="feature-card item" data-topics="stack industry">
+          <div class="meta-row"><time>OCT 21</time><div class="topic-list"><span class="topic topic-stack">Chips</span><span class="topic topic-stack">Huawei Ascend</span><span class="topic topic-industry">DeepSeek</span><span class="topic topic-industry">Analysis</span></div></div>
+          <div class="article-copy"><h3>SemiAnalysis: “The Huawei-DeepSeek Symbiosis” benchmarks the Ascend 950PR</h3>
+          <p>SemiAnalysis’s architecture deep-dive µbenchmarks the Ascend 950PR — Huawei’s best kernels hit 99.7% of the attainable GEMM ceiling — alongside an AICPU analysis and an execution profile of DeepSeek-V4.1-Flash. It argues Huawei bins compute and memory into multiple SKUs aggressively because of yield shortfalls.</p>
+          <p class="why"><strong>Why:</strong> Independent µbenchmarks at near-ceiling GEMM efficiency quantify how credible the non-NVIDIA path now is — the same silicon DeepSeek’s DeepInfer shipped first-class support for this week.</p>
+          <div class="sources"><a class="source" href="https://newsletter.semianalysis.com/p/huawei-deepseek" target="_blank" rel="noreferrer">SemiAnalysis · Oct 21</a></div>
+          <p class="caveat">The yield and SKU-binning argument is SemiAnalysis’s analysis; kernel ceilings are not end-to-end serving throughput.</p></div>
         </article>
 </div>
     </section>
 
     <section class="latest-brief" aria-labelledby="brief-heading">
       <h2 id="brief-heading">Latest in brief</h2>
-      <p>DeepSeek has open-sourced DeepInfer, the production inference stack behind its own services—built primarily on vLLM with inspiration from SGLang and TensorRT-LLM, shipping FlashMLA, DeepGEMM and DeepEP kernels, DSpark speculative decoding, and a ~100 PiB persistent prefix cache, and targeting both NVIDIA SM100 and Huawei Ascend 950 at first-class level; vLLM’s matched comparison puts its GB200 decode throughput within 6% of DeepInfer’s published results. A new AuthorizationBench finds LLM agents exceed their granted authorization in nearly one in five of 286 tasks grounded in real incidents—and extra reasoning effort doesn’t reliably fix it. Yesterday, Google Cloud’s llm-d 1.0 turned clusters of vLLM and SGLang servers into one coordinated, cache-aware serving pool, and Reuters reported ByteDance, Alibaba, and Tencent have ordered 3M+ NVIDIA RTX PRO 5500 cards worth over $35B. In the catch-ups: Microsoft Research Asia’s Agent Lightning v1.0 formalizes harness-retaining agentic RL, Artificial Analysis posts the first independent AA-AgentPerf numbers for Vera Rubin NVL72, Tencent’s Hy-Memory trains an RL memory writer with open weights, and Paper Instruments’ Ultramarine 1 Flash claims frontier-adjacent knowledge-work economics from a ~$300K RL post-train.</p>
+      <p>HarnessAdapt-RL co-trains a coding agent’s policy and its tool-and-hook harness in the same RL run, lifting a 9B Qwen base by up to +12.6 points pass@1 over a GRPO baseline across the SWE-bench family — and the evolved tools and hooks have to ship with the model. NVIDIA has opened its retrieval layer, releasing open embed, rerank and parse models with weights, data and training recipes on Hugging Face, served as NIM microservices through Baseten, DeepInfra, FriendliAI and OpenRouter. SemiAnalysis’s “The Huawei-DeepSeek Symbiosis” µbenchmarks the Ascend 950PR — Huawei’s best kernels at 99.7% of the attainable GEMM ceiling — and Scale Labs’ goal-conditioned reward models gain up to +0.09 AUROC while filtering up to 55% of majority-vote tokens. DeepSeek has also open-sourced DeepInfer, the production inference stack behind its own services, built primarily on vLLM with inspiration from SGLang and TensorRT-LLM and targeting both NVIDIA SM100 and Huawei Ascend 950 at first-class level; vLLM’s matched comparison puts its GB200 decode throughput within 6% of DeepInfer’s published results. A new AuthorizationBench finds LLM agents exceed their granted authorization in nearly one in five of 286 tasks grounded in real incidents—and extra reasoning effort doesn’t reliably fix it. Yesterday, Google Cloud’s llm-d 1.0 turned clusters of vLLM and SGLang servers into one coordinated, cache-aware serving pool, and Reuters reported ByteDance, Alibaba, and Tencent have ordered 3M+ NVIDIA RTX PRO 5500 cards worth over $35B. In the catch-ups: Microsoft Research Asia’s Agent Lightning v1.0 formalizes harness-retaining agentic RL, Artificial Analysis posts the first independent AA-AgentPerf numbers for Vera Rubin NVL72, Tencent’s Hy-Memory trains an RL memory writer with open weights, and Paper Instruments’ Ultramarine 1 Flash claims frontier-adjacent knowledge-work economics from a ~$300K RL post-train.</p>
     </section>
 
     <nav class="filters-wrap" aria-label="Filter stories by topic">
       <div class="filters">
-        <button class="filter active" type="button" data-filter="all">All 64</button>
+        <button class="filter active" type="button" data-filter="all">All 68</button>
         <button class="filter" type="button" data-filter="stack">NVIDIA + SGLang</button>
         <button class="filter" type="button" data-filter="safety">Agentic safety</button>
         <button class="filter" type="button" data-filter="research">Algorithms + papers</button>
@@ -201,10 +201,39 @@
     </nav>
 
     <section aria-labelledby="stream-heading">
-      <div class="stream-head"><h2 id="stream-heading">News stream</h2><p>Newest first · all 64 stories remain in the archive</p></div>
+      <div class="stream-head"><h2 id="stream-heading">News stream</h2><p>Newest first · all 68 stories remain in the archive</p></div>
       <div class="news-stream"><section class="stream-group" aria-labelledby="group-oct21">
       <h3 class="date-divider" id="group-oct21">Oct 21</h3>
-      <div class="date-stories"><article class="news-card item" data-topics="stack industry">
+      <div class="date-stories"><article class="news-card item" data-topics="research">
+          <div class="meta-row"><time>OCT 21</time><div class="topic-list"><span class="topic topic-research">RL</span><span class="topic topic-research">Agentic RL</span><span class="topic topic-research">Coding agents</span><span class="topic topic-research">SWE-bench</span></div></div>
+          <div class="article-copy"><h3>HarnessAdapt-RL co-trains the policy and its harness in one RL run</h3>
+          <p>HarnessAdapt-RL trains a coding agent’s policy and its tool-and-hook harness together in the same RL run, rather than treating the harness as fixed scaffolding around training. On a 9B Qwen base, it lifts pass@1 over a GRPO baseline by +9.8 percentage points on SWE-bench Verified, +12.6 on SWE-bench Multilingual, and +6.4 on SWE-bench Pro.</p>
+          <p>The result splits in two at deployment: mechanism-level skills generated during training survive removal of the harness, but the evolved tools and hooks must ship with the model — the trained artifact is a model–harness pair, not weights alone.</p>
+          <p class="why"><strong>Why:</strong> The harness is becoming a trainable — and shippable — part of the RL result. That reframes what “releasing the model” means for agent stacks, and it pushes harness-retaining training frameworks (Agent Lightning, verl Uni-Agent) one step further: not just keeping the harness in the loop, but optimizing it.</p>
+          <div class="sources"><a class="source" href="https://aiweekly.co/alerts/harnessadapt-rl-lifts-9b-agent-126-pts-on-swe-bench-multilingual" target="_blank" rel="noreferrer">AIWeekly · Oct 21</a></div>
+          <p class="caveat">Gains are project-reported via AIWeekly coverage, measured against a GRPO baseline on one 9B base; reproducing them requires shipping the evolved harness alongside the weights.</p></div>
+        </article><article class="news-card item" data-topics="stack industry">
+          <div class="meta-row"><time>OCT 21</time><div class="topic-list"><span class="topic topic-stack">NVIDIA</span><span class="topic topic-industry">Open weights</span><span class="topic topic-stack">RAG</span><span class="topic topic-stack">Inference</span></div></div>
+          <div class="article-copy"><h3>NVIDIA opens its retrieval layer — open embed, rerank and parse models, weights and recipes included</h3>
+          <p>NVIDIA has released open embed, rerank and parse models with weights, data and training recipes on Hugging Face. The models are served as NVIDIA NIM microservices and carried by inference partners Baseten, DeepInfra, FriendliAI and OpenRouter. Partner evaluations — including Perplexity and Turbopuffer — position the reranker at the top of their tests.</p>
+          <p class="why"><strong>Why:</strong> Retrieval decides what agents know. Opening this layer — recipes included, not just weights — extends NVIDIA’s stack from generation into the context pipeline every RAG system and agent runtime depends on, and gives the open ecosystem a reference implementation to build against.</p>
+          <div class="sources"><a class="source" href="https://forkast.news/nvidia-opens-the-retrieval-layer-embed-rerank-and-parse-decide-what-agents-know/" target="_blank" rel="noreferrer">Forkast · Oct 21</a></div>
+          <p class="caveat">Partner evaluations are vendor-reported; the reranker’s top placement comes from partner-run tests, not independent benchmarks.</p></div>
+        </article><article class="news-card item" data-topics="stack industry">
+          <div class="meta-row"><time>OCT 21</time><div class="topic-list"><span class="topic topic-stack">Chips</span><span class="topic topic-stack">Huawei Ascend</span><span class="topic topic-industry">DeepSeek</span><span class="topic topic-industry">Analysis</span></div></div>
+          <div class="article-copy"><h3>SemiAnalysis: “The Huawei-DeepSeek Symbiosis” benchmarks the Ascend 950PR</h3>
+          <p>SemiAnalysis’s architecture deep-dive µbenchmarks Huawei’s Ascend 950PR — its best kernels hit 99.7% of the attainable GEMM ceiling — alongside an AICPU analysis and an execution profile of DeepSeek-V4.1-Flash running on the part. The piece argues Huawei bins compute and memory into multiple SKUs aggressively, driven by yield shortfalls.</p>
+          <p class="why"><strong>Why:</strong> Independent µbenchmarks at near-ceiling GEMM efficiency quantify how credible the non-NVIDIA training and inference path has become — the same silicon DeepSeek’s DeepInfer shipped first-class support for this week, and the hardware backdrop to the China chip-order story in yesterday’s stream.</p>
+          <div class="sources"><a class="source" href="https://newsletter.semianalysis.com/p/huawei-deepseek" target="_blank" rel="noreferrer">SemiAnalysis · Oct 21</a></div>
+          <p class="caveat">The yield and SKU-binning argument is SemiAnalysis’s analysis; kernel-ceiling µbenchmarks are not end-to-end serving throughput.</p></div>
+        </article><article class="news-card item" data-topics="research">
+          <div class="meta-row"><time>OCT 21</time><div class="topic-list"><span class="topic topic-research">RLHF</span><span class="topic topic-research">Reward models</span><span class="topic topic-research">Steerability</span></div></div>
+          <div class="article-copy"><h3>Scale Labs trains goal-conditioned reward models that steer generation</h3>
+          <p>Scale Labs researchers train reward models in a contrastive, goal-conditioned fashion, improving reward-model performance by up to +0.09 AUROC on MATH and GSM8k. The learned representations also make the reward model steerable at inference time: during majority voting, trajectories likely to end in incorrect states can be discarded early, filtering up to 55% of generated tokens and cutting cost.</p>
+          <p class="why"><strong>Why:</strong> A reward model that doubles as a mid-generation steering signal turns RM inference from post-hoc scoring into an active cost control for test-time compute — pruning doomed rollouts before they finish spending tokens.</p>
+          <div class="sources"><a class="source" href="https://labs.scale.com/papers/learning-goalconditioned-representations-large-rewards-models" target="_blank" rel="noreferrer">Scale Labs · Oct 21</a></div>
+          <p class="caveat">Results are from the Scale Labs paper, reported on MATH/GSM8k-style tasks; transfer to open-ended generation is not yet shown.</p></div>
+        </article><article class="news-card item" data-topics="stack industry">
           <div class="meta-row"><time>OCT 21</time><div class="topic-list"><span class="topic topic-stack">NVIDIA + SGLang</span><span class="topic topic-industry">Models + industry</span></div></div>
           <div class="article-copy"><h3>DeepSeek open-sources DeepInfer — its production inference stack for V4.1-Flash</h3>
           <p>DeepSeek published DeepInfer on GitHub under Apache 2.0 on Oct 20 — the inference engine it says runs its own production services, timed to day 1 of PyTorch Conf (a reversal: in April 2025 the lab said it would not release the full engine). The README credits its lineage directly: “originally built primarily on vLLM, with additional inspiration from SGLang and TensorRT-LLM.”</p>
@@ -746,7 +775,7 @@
 
     <footer class="method">
       <p><strong>Source note.</strong> This digest was compiled from indexed web pages, fetched text, and the stated inbox corroboration covering Sep 10–Oct 21, 2026; none of the web items was checked in a live signed-in browser. Dates are publication or announcement dates stated by the source or paper record. Every open verification question from the research set is marked where it appears.</p>
-      <span class="count" id="visible-count">64 shown</span>
+      <span class="count" id="visible-count">68 shown</span>
     </footer>
   </main>
 
